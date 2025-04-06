@@ -1,0 +1,307 @@
+commit 35cc1f3a55d150b12319de8c3ee0a34a29f5983e
+Author: HilanaM <hilanamdawar>
+Date:   Sun Apr 6 17:32:11 2025 -0400
+
+    v2updating
+
+diff --git a/fundamentals.c b/fundamentals.c
+index 6cdd645..130cfb3 100644
+--- a/fundamentals.c
++++ b/fundamentals.c
+@@ -45,10 +45,32 @@ void fundamentals(void) {
+             // Show character and position
+             printf("The character found at %d position is \'%c\'\n", (int)position, buffer1[position]);
+         }
+-        /* Continues the loop as long as the user does not input "q". 
++        /* Continues the loop as long as the user does not input "q".
+     This allows repeated demonstrations without restarting the program*/
+     } while (strcmp(buffer1, "q") != 0);
+-    /** Displays a message indicating the end of the program's functionality. 
++    /** Displays a message indicating the end of the program's functionality.
+     This provides closure to the user and signals that the demonstration is complete*/
+     printf("*** End of Indexing Strings Demo ***\n\n");
+ 
++
++    //v2
++   // Print a starting message to show the starting of the demo
++    printf("*** Start of Measuring Strings Demo ***\n");
++    char buffer2[BUFFER_SIZE];
++
++    do {
++        // Ask the user to type a string
++        printf("Type a string (q - to quit): \n");
++        // Read the user input (including spaces) from the keyboard
++        fgets(buffer2, BUFFER_SIZE, stdin);
++
++        // Remove the newline character added by fgets
++        buffer2[strlen(buffer2) - 1] = '\0';
++        // If the user didn't type "q", print the length of the string
++        if (strcmp(buffer2, "q") != 0)
++            printf("The length of '%s' is %d characters\n", buffer2, (int)strlen(buffer2));
++        // the loop keep looping until user types "q"
++    } while (strcmp(buffer2, "q") != 0);
++    //print an ending message to show the demo is over 
++    printf("*** End of Measuring Strings Demo ***\n\n");
++}
+
+commit 129e43ca7d0fcaa3d34a34ad0251e863f6b479a0
+Author: HilanaM <hilanamdawar@gmail.com>
+Date:   Sun Apr 6 20:57:27 2025 +0000
+
+    v11
+
+diff --git a/a.out b/a.out
+deleted file mode 100755
+index 8fa64f0..0000000
+Binary files a/a.out and /dev/null differ
+
+commit a9672f97a22b514cd501e89ec466aa252ee16acd
+Author: HilanaM <hilanamdawar@gmail.com>
+Date:   Sun Apr 6 20:56:01 2025 +0000
+
+    v1s
+
+diff --git a/a.out b/a.out
+new file mode 100755
+index 0000000..8fa64f0
+Binary files /dev/null and b/a.out differ
+diff --git a/main.c/fundamentals.c b/fundamentals.c
+similarity index 58%
+rename from main.c/fundamentals.c
+rename to fundamentals.c
+index 495811c..6cdd645 100644
+--- a/main.c/fundamentals.c
++++ b/fundamentals.c
+@@ -52,55 +52,3 @@ void fundamentals(void) {
+     This provides closure to the user and signals that the demonstration is complete*/
+     printf("*** End of Indexing Strings Demo ***\n\n");
+ 
+-
+-    //v2
+-   // Print a starting message to show the starting of the demo
+-    printf("*** Start of Measuring Strings Demo ***\n");
+-    char buffer2[BUFFER_SIZE];
+-
+-    do {
+-        // Ask the user to type a string
+-        printf("Type a string (q - to quit): \n");
+-        // Read the user input (including spaces) from the keyboard
+-        fgets(buffer2, BUFFER_SIZE, stdin);
+-
+-        // Remove the newline character added by fgets
+-        buffer2[strlen(buffer2) - 1] = '\0';
+-        // If the user didn't type "q", print the length of the string
+-        if (strcmp(buffer2, "q") != 0)
+-            printf("The length of '%s' is %d characters\n", buffer2, (int)strlen(buffer2));
+-        // the loop keep looping until user types "q"
+-    } while (strcmp(buffer2, "q") != 0);
+-    //print an ending message to show the demo is over 
+-    printf("*** End of Measuring Strings Demo ***\n\n");
+-
+-    //v3
+-    // Print a starting message for the demo
+-    printf("*** Start of Copying Strings Demo ***\n");
+-    // Create two character arrays (buffers) for destination and source strings
+-    char destination[BUFFER_SIZE];
+-    char source[BUFFER_SIZE];
+-    do {
+-        // Set the destination string to empty
+-        destination[0] = '\0';
+-       // let the user know the destination string was reset
+-        printf("Destination string is reset to empty\n");
+-        // Ask the user to type a source string
+-        printf("Type the source string (q - to quit) : \n");
+-        fgets(source, BUFFER_SIZE, stdin);
+-        source[strlen(source) - 1] = '\0';
+-        // If the user did not type "q", copy the source to destination
+-        if (strcmp(source, "q") != 0) {
+-            strcpy(destination, source);
+-            printf("New destination string is \'%s\'\n", destination);
+-        }
+-        // Keep repeating until the user types "q"
+-    } while (strcmp(source, "q") != 0);
+-    // Print an ending message for the demo
+-    printf("*** End of Copying Strings Demo ***\n\n");
+-
+-
+-}
+-
+-        
+-        
+\ No newline at end of file
+diff --git a/main.c/fundamentals.h b/fundamentals.h
+similarity index 100%
+rename from main.c/fundamentals.h
+rename to fundamentals.h
+diff --git a/main.c/main.c b/main.c
+similarity index 100%
+rename from main.c/main.c
+rename to main.c
+
+commit 12c058f3698982bf6cb2261e27b2b0b95616ce17
+Author: HilanaM <hilanamdawar@gmail.com>
+Date:   Sun Apr 6 20:50:37 2025 +0000
+
+    bush v1
+
+diff --git a/main.c/fundamentals.c b/main.c/fundamentals.c
+new file mode 100644
+index 0000000..495811c
+--- /dev/null
++++ b/main.c/fundamentals.c
+@@ -0,0 +1,106 @@
++// FUNDAMENTALS MODULE SOURCE
++//this is the  max size for input string the user can type in
++//It stops the program from handling strings that are too long, preventing errors.
++#define BUFFER_SIZE 80  
++//This sets the max size for the number the user can type (the position in the string) 
++//It makes sure the program doesn’t accept too much data for this part.
++#define NUM_INPUT_SIZE 10 
++#include "fundamentals.h"
++
++/*Fundamentals module
++* 
++V1: takes a string and a position then displays the character at the given position*/
++void fundamentals(void) {
++
++    /* Version 1 */
++
++    printf("*** Start of index Strings DEMO *** \n"); // /*This prints a message to let the user know the program is starting*/
++    char buffer1[BUFFER_SIZE]; //This creates a storage space (buffer1) to hold the user’s input. It can store up to 80 characters because of the BUFFER_SIZE limit.
++    /**This creates another box (called 'numInput') to store the number the user types for the character position.
++    It can hold up to 10 characters because of the NUM_INPUT_SIZE limit*/
++    char numInput[NUM_INPUT_SIZE];
++    size_t position; //This is where the program stores the position after converting it into a number.
++    do {
++        /*This loop runs until the user types "q" to quit, allowing multiple inputs without restarting the program.*/
++        printf("Type not empty string (q - to quit):\n");
++
++        fgets(buffer1, BUFFER_SIZE, stdin);   // Read user input 
++
++        buffer1[strlen(buffer1) - 1] = '\0'; // Removes new line character, adds NULL 
++        // Check if want to quit
++        if (strcmp(buffer1, "q") != 0) {
++
++            printf("Type the character position within the string:\n");
++            // Read input string
++            fgets(numInput, NUM_INPUT_SIZE, stdin);
++            // Removes new line character, adds NULL
++            numInput[strlen(numInput) - 1] = '\0';
++            // Convert input string to integer
++            position = atoi(numInput);
++            //Check if position is too big 
++            if (position >= strlen(buffer1)) {
++                position = strlen(buffer1) - 1;
++                printf("Too big... Position reduced to max. available\n");
++            }
++            // Show character and position
++            printf("The character found at %d position is \'%c\'\n", (int)position, buffer1[position]);
++        }
++        /* Continues the loop as long as the user does not input "q". 
++    This allows repeated demonstrations without restarting the program*/
++    } while (strcmp(buffer1, "q") != 0);
++    /** Displays a message indicating the end of the program's functionality. 
++    This provides closure to the user and signals that the demonstration is complete*/
++    printf("*** End of Indexing Strings Demo ***\n\n");
++
++
++    //v2
++   // Print a starting message to show the starting of the demo
++    printf("*** Start of Measuring Strings Demo ***\n");
++    char buffer2[BUFFER_SIZE];
++
++    do {
++        // Ask the user to type a string
++        printf("Type a string (q - to quit): \n");
++        // Read the user input (including spaces) from the keyboard
++        fgets(buffer2, BUFFER_SIZE, stdin);
++
++        // Remove the newline character added by fgets
++        buffer2[strlen(buffer2) - 1] = '\0';
++        // If the user didn't type "q", print the length of the string
++        if (strcmp(buffer2, "q") != 0)
++            printf("The length of '%s' is %d characters\n", buffer2, (int)strlen(buffer2));
++        // the loop keep looping until user types "q"
++    } while (strcmp(buffer2, "q") != 0);
++    //print an ending message to show the demo is over 
++    printf("*** End of Measuring Strings Demo ***\n\n");
++
++    //v3
++    // Print a starting message for the demo
++    printf("*** Start of Copying Strings Demo ***\n");
++    // Create two character arrays (buffers) for destination and source strings
++    char destination[BUFFER_SIZE];
++    char source[BUFFER_SIZE];
++    do {
++        // Set the destination string to empty
++        destination[0] = '\0';
++       // let the user know the destination string was reset
++        printf("Destination string is reset to empty\n");
++        // Ask the user to type a source string
++        printf("Type the source string (q - to quit) : \n");
++        fgets(source, BUFFER_SIZE, stdin);
++        source[strlen(source) - 1] = '\0';
++        // If the user did not type "q", copy the source to destination
++        if (strcmp(source, "q") != 0) {
++            strcpy(destination, source);
++            printf("New destination string is \'%s\'\n", destination);
++        }
++        // Keep repeating until the user types "q"
++    } while (strcmp(source, "q") != 0);
++    // Print an ending message for the demo
++    printf("*** End of Copying Strings Demo ***\n\n");
++
++
++}
++
++        
++        
+\ No newline at end of file
+diff --git a/main.c/fundamentals.h b/main.c/fundamentals.h
+new file mode 100644
+index 0000000..daacf46
+--- /dev/null
++++ b/main.c/fundamentals.h
+@@ -0,0 +1,7 @@
++//FUNDAMENTALS MODULE HEADER
++#ifndef FUNDAMENTALS_H
++#define FUNDAMENTALS_H
++#include <string.h>
++#include <stdio.h>
++void fundamentals(void);
++#endif
+\ No newline at end of file
+diff --git a/main.c/main.c b/main.c/main.c
+new file mode 100644
+index 0000000..aa5c0be
+--- /dev/null
++++ b/main.c/main.c
+@@ -0,0 +1,12 @@
++#include <stdio.h>
++#include <stdlib.h>
++#include <string.h>
++#include "fundamentals.h"
++ 
++int main(void)
++{
++    fundamentals();
++ 
++ 
++    return 0; 
++}
+\ No newline at end of file
+
+commit f41524e13011970ba0476a1dedc9d93d2ac39bbe
+Author: HilanaM <hilanamdawar@gmail.com>
+Date:   Sun Apr 6 15:26:35 2025 -0400
+
+    Initial commit
+
+diff --git a/README.md b/README.md
+new file mode 100644
+index 0000000..6471802
+--- /dev/null
++++ b/README.md
+@@ -0,0 +1 @@
++# cprfinals
+\ No newline at end of file

@@ -74,3 +74,28 @@ void fundamentals(void) {
     //print an ending message to show the demo is over 
     printf("*** End of Measuring Strings Demo ***\n\n");
 }
+//v3
+   // Print a starting message for the demo
+printf("*** Start of Copying Strings Demo ***\n");
+// Create two character arrays (buffers) for destination and source strings
+char destination[BUFFER_SIZE];
+char source[BUFFER_SIZE];
+do {
+    // Set the destination string to empty
+    destination[0] = '\0';
+    // let the user know the destination string was reset
+    printf("Destination string is reset to empty\n");
+    // Ask the user to type a source string
+    printf("Type the source string (q - to quit) : \n");
+    fgets(source, BUFFER_SIZE, stdin);
+    source[strlen(source) - 1] = '\0';
+    // If the user did not type "q", copy the source to destination
+    if (strcmp(source, "q") != 0) {
+        strcpy(destination, source);
+        printf("New destination string is \'%s\'\n", destination);
+    }
+    // Keep repeating until the user types "q"
+} while (strcmp(source, "q") != 0);
+// Print an ending message for the demo
+printf("*** End of Copying Strings Demo ***\n\n");
+}
